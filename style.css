@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap');
+/* General Body & Font Styles */
+body {
+    background-color: #121212; 
+    background-image: radial-gradient(ellipse at center top, #2a2a2a 0%, #121212 40%);
+    background-attachment: fixed;
+    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header & Navigation */
+header {
+    background-color: #1a1a1a;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #00FFFF; /* Electric Blue Accent */
+}
+
+header h1 {
+    color: #00FFFF;
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+}
+
+header nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+header nav a:hover, header nav a.active {
+    color: #00FFFF;
+}
+
+/* Main Content */
+main {
+    padding: 2rem 5%;
+}
+
+/* Search and Filter Controls */
+.controls-container {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#searchInput {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.8rem;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-buttons button {
+    background-color: transparent;
+    border: 1px solid #00FFFF;
+    color: #00FFFF;
+    padding: 0.5rem 1rem;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-buttons button:hover, .filter-buttons button.active {
+    background-color: #00FFFF;
+    color: #121212;
+    font-weight: bold;
+}
+
+/* Band List Grid */
+.band-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.band-card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.band-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.1);
+    border-color: #00FFFF; 
+}
+
+.band-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.band-info {
+    padding: 1rem;
+}
+
+.band-info h2 {
+    margin-top: 0;
+    color: #00FFFF;
+}
+
+.band-info .genre {
+    background-color: #333;
+    color: #e0e0e0;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.band-info a {
+    display: inline-block;
+    background-color: #00FFFF;
+    color: #121212;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.band-info a:hover {
+    background-color: #00cccc;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem 5%;
+    margin-top: 2rem;
+    background-color: #1a1a1a;
+    border-top: 1px solid #333;
+}
+
+/* --- Responsive Design (Assignment 2) --- */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header nav {
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .filter-buttons button {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+/* --- Add this code to the bottom of your style.css --- */
+
+/* =======================================
+   FORM STYLES (for Register & Dashboard)
+   ======================================= */
+.form-container,
+.form-section {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Important for padding */
+    font-family: inherit;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group .error {
+    color: #ff4d4d;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: #00FFFF;
+    color: #121212;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #00cccc;
+}
+
+
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.list-section {
+    background-color: #1e1e1e;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.form-section h2,
+.list-section h2 {
+    color: #00FFFF;
+    margin-top: 0;
+    border-bottom: 2px solid #00FFFF;
+    padding-bottom: 10px;
+}
+
+.event-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #333;
+}
+
+.event-item:last-child {
+    border-bottom: none;
+}
+
+.event-item-info {
+    flex-grow: 1;
+}
+
+.event-item-info h3 {
+    margin: 0;
+    color: #e0e0e0;
+}
+
+.event-item-info p {
+    margin: 5px 0 0;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.event-item-actions button {
+    background-color: transparent;
+    border: 1px solid #00FFFF;
+    color: #00FFFF;
+    padding: 0.3rem 0.6rem;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.event-item-actions .delete-btn {
+    border-color: #ff4d4d;
+    color: #ff4d4d;
+}
+
+.event-item-actions button:hover {
+    background-color: #00FFFF;
+    color: #121212;
+}
+
+.event-item-actions .delete-btn:hover {
+    background-color: #ff4d4d;
+    color: #121212;
+}
+
+/* Responsive adjustment for dashboard */
+@media (max-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- Add to bottom of style.css --- */
+.band-info h2,
+.form-section h2,
+.list-section h2,
+.content-section h2,
+.content-section h3,
+.form-container h2 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px; /* Adds a little breathing room */
+}
+
+.participant-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.participant-table th,
+.participant-table td {
+    padding: 0.8rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.participant-table th {
+    color: #00FFFF;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}

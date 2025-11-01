@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Participants - Music Fest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <a href="dashboard.html">Manage Events</a>
+            <a href="participants.html" class="active">View Participants</a>
+            <a href="index.html">View Main Site</a>
+            <a href="admin-login.html" class="admin-link">Logout</a> 
+        </nav>
+    </header>
+
+    <main>
+        <section class="list-section" style="max-width: 900px; margin: 2rem auto;">
+            <h2>Registered Participants</h2>
+            <table class="participant-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile Number</th>
+                    </tr>
+                </thead>
+                <tbody id="participant-list">
+                    </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Music Fest. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchParticipants();
+        });
+
+        async function fetchParticipants() {
+            const listBody = document.getElementById('participant-list');
+            // This is the backend route YOU built for Assignment 7
+            const apiUrl = 'http://localhost:3000/api/users'; 
+
+            try {
+                // 1. FETCH data from the new URL
+                const response = await fetch(apiUrl);
+                const users = await response.json();
+
+                listBody.innerHTML = ''; // Clear the list
+
+                if (users.length === 0) {
+                    listBody.innerHTML = '<tr><td colspan="3" style="color:#999;">No participants found.</td></tr>';
+                    return;
+                }
+
+                // 2. LOOP through the 'users' array
+                users.forEach(user => {
+                    const row = `
+                        <tr>
+                            <td>${user.name}</td>
+                            <td>${user.email}</td>
+                            <td>${user.mobile}</td>
+                        </tr>
+                    `;
+                    listBody.innerHTML += row; // Add the new row to the table
+                });
+
+            } catch (error) {
+                console.error('Error fetching participants:', error);
+                listBody.innerHTML = '<tr><td colspan="3" style="color:red;">Could not load participants.</td></tr>';
+            }
+        }
+    </script>
+</body>
+</html>

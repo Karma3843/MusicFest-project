@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Music Fest</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styles for the form */
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #1e1e1e;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            color: #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .form-group .error {
+            color: #ff4d4d;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: #00FFFF;
+            color: #121212;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #00cccc;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Music Fest</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="register.html" class="active">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h2>Register for Updates</h2>
+            <form id="registrationForm" novalidate>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                    <div class="error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error"></div>
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" required>
+                    <div class="error"></div>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Music Fest. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('registrationForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const mobileInput = document.getElementById('mobile');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Stop form from submitting
+                
+                // 1. Validate the form first
+                if (validateForm()) {
+                    // 2. If valid, send the data to the backend
+                    submitFormData();
+                }
+            });
+
+            // --- NEW FUNCTION TO SEND DATA TO THE BACKEND ---
+            async function submitFormData() {
+                const name = nameInput.value;
+                const email = emailInput.value;
+                const mobile = mobileInput.value;
+
+                const formData = { name, email, mobile };
+
+                try {
+                    // Send a POST request to our server
+                    const response = await fetch('http://localhost:3000/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) { // Status 200-299
+                        alert('Registration successful! Data saved.');
+                        form.reset();
+                    } else {
+                        // Show server errors (e.g., "Email already registered")
+                        alert(`Error: ${result.message}`);
+                    }
+
+                } catch (error) {
+                    console.error('Failed to submit form:', error);
+                    alert('An error occurred. Could not connect to server.');
+                }
+            }
+            
+            // --- ALL YOUR VALIDATION FUNCTIONS STAY THE SAME ---
+            function validateForm() {
+                let isValid = true;
+                
+                if (nameInput.value.trim() === '') {
+                    setError(nameInput, 'Full Name is required');
+                    isValid = false;
+                } else {
+                    setSuccess(nameInput);
+                }
+
+                if (emailInput.value.trim() === '') {
+                    setError(emailInput, 'Email is required');
+                    isValid = false;
+                } else if (!isValidEmail(emailInput.value.trim())) {
+                    setError(emailInput, 'Please enter a valid email address');
+                    isValid = false;
+                } else {
+                    setSuccess(emailInput);
+                }
+
+                if (mobileInput.value.trim() === '') {
+                    setError(mobileInput, 'Mobile number is required');
+                    isValid = false;
+                } else if (!isValidMobile(mobileInput.value.trim())) {
+                    setError(mobileInput, 'Please enter a valid 10-digit mobile number');
+                    isValid = false;
+                } else {
+                    setSuccess(mobileInput);
+                }
+                return isValid;
+            }
+
+            function setError(input, message) {
+                const formGroup = input.parentElement;
+                const errorDisplay = formGroup.querySelector('.error');
+                errorDisplay.innerText = message;
+            }
+
+            function setSuccess(input) {
+                const formGroup = input.parentElement;
+                const errorDisplay = formGroup.querySelector('.error');
+                errorDisplay.innerText = '';
+            }
+
+            function isValidEmail(email) {
+                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            function isValidMobile(mobile) {
+                const re = /^\d{10}$/;
+                return re.test(String(mobile));
+            }
+        });
+    </script>
+</body>
+</html>

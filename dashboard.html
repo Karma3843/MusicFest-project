@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Music Fest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <a href="index.html">View Main Site</a>
+            <a href="participants.html">View Participants</a>
+            <a href="dashboard.html">Manage Events</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard-grid">
+            <section class="form-section">
+                <h2 id="form-title">Add New Event</h2>
+                <form id="eventForm">
+                    <input type="hidden" id="eventId">
+
+                    <div class="form-group">
+                        <label for="name">Band Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="genre">Genre (Rock, Metal, Indie)</label>
+                        <input type="text" id="genre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image URL</label>
+                        <input type="text" id="image" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="websiteUrl">Official Website URL (for tickets)</label>
+                        <input type="text" id="websiteUrl" placeholder="https://www.band-website.com">
+                    </div>
+                    <button type="submit" class="submit-btn">Save Event</button>
+                    <button type="button" id="cancelEdit" class="submit-btn" style="background-color:#555; margin-top:10px; display:none;">Cancel Edit</button>
+                </form>
+            </section>
+
+            <section class="list-section">
+                <h2>Current Events</h2>
+                <div id="eventList">
+                    </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Music Fest. All Rights Reserved.</p>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

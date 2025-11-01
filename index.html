@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Fest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Music Fest</h1>
+        <nav>
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="register.html">Register</a>
+            <a href="admin-login.html" clas="admin-link">Admin</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="controls-container">
+            <input type="text" id="searchInput" placeholder="Search for a band...">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-genre="all">All</button>
+                <button class="filter-btn" data-genre="Rock">Rock</button>
+                <button class="filter-btn" data-genre="Metal">Metal</button>
+                <button class="filter-btn" data-genre="Indie">Indie</button>
+            </div>
+        </div>
+
+        <div id="band-list" class="band-grid">
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Music Fest. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
