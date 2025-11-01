@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cancelEditBtn = document.getElementById('cancelEdit');
     
     // The address of our backend API
-    const apiUrl = 'http://localhost:3000/api/events';
-
+   const apiUrl = 'https://musicfest-project.onrender.com/api/events';
     // --- 1. READ: Fetch and display all events on page load ---
     async function fetchEvents() {
         try {
