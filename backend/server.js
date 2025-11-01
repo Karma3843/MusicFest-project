@@ -5,7 +5,7 @@ const cors = require('cors');
 
 // 2. Initialize the Express app
 const app = express();
-const PORT = 3000; // We'll run our backend on port 3000
+const PORT = process.env.PORT || 3000; 
 
 // 3. Middleware
 app.use(cors()); // Allows cross-origin requests (from our front-end)
@@ -13,7 +13,7 @@ app.use(express.json()); // Allows the server to understand JSON data sent from 
 
 // 4. Connect to MongoDB Atlas
 //    !!!! IMPORTANT: MAKE SURE YOUR PASSWORD IS CORRECTLY PASTED IN HERE !!!!
-const mongoURI = 'mongodb+srv://ahershantanu04_db_user:svaher370822@cluster0.nn6iclu.mongodb.net/MusicFestDB?retryWrites=true&w=majority&appName=Cluster0';
+const mongoURI = process.env.mongoURI;
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected successfully!'))
